@@ -1,72 +1,116 @@
-const express = require('express');
-const app =new express();
-const port = process.env.PORT || 5500;
+const express = require("express");
+const port = process.env.PORT || 5000;
 
-const nav= [
+const app = express();
+const nav = [
     {
-        link:'/books',name:'Books'
+        link:"/books",name:"Books"
     },
     {
-        link:'/authors',name:'Authors'
+        link:"/authors",name:"Authors"
+    },
+    {
+        link:"/Login",name:"Login"
     }
 ];
-
-const nav1= [
+const nav1 = [
     {
-        link:'/login',name:'Login'
+        link:"/books/addBook",name:"Add New Book"
     },
     {
-        link:'/signup',name:'Signup'
+        link:"/authors/addAuthor",name:"Add New Author"
+    }      
+];
+const nav2 = [
+    {
+        link:"/",name:"Log out"
+    }  
+];
+const nav3 = [
+    {
+        link:"/updateAuthor",name:"Update Author"
+    },
+    {
+        link:"/updateBook",name:"Update Book"
+    },
+    {
+        link:"/deleteAuthor",name:"Delete Author"
+    },
+    {
+        link:"/deleteBook",name:"Delete Book"
     }
 ];
-
-const navAdmin = [
+//for normal users
+const nav4 = [                      
     {
-        link:'/adminhome/books',name:'Books'
+        link:"/books1",name:"Books"
     },
     {
-        link:'/adminhome/addbooks',name:'Add Books'
+        link:"/authors1",name:"Authors"
     },
     {
-        link:'/adminhome/authors',name:'Authors'
-    },
-    {
-        link:'/adminhome/addauthors',name:'Add Author'
-    }
+        link:"/",name:"Log out"
+    }      
 ];
 
-const booksRouter = require('./src/routes/bookRoutes')(nav);
-const adminRouter = require('./src/routes/adminRoutes')(navAdmin);
-const userRouter = require('./src/routes/userRoutes')(nav);
-const authorRouter = require('./src/routes/authorRoutes')(nav);
-const loginRouter = require('./src/routes/loginRoutes')(nav1);
-const signupRouter = require('./src/routes/signupRoutes')(nav1);
-// const addauthorRouter = require('./src/routes/addauthorRoutes')(navAdmin);
+const booksRouter = require("./src/routes/bookRoutes")(nav,nav1,nav2,nav3)
+const authorRouter = require("./src/routes/authorRoutes")(nav,nav1,nav2,nav3)
+const LoginRouter = require("./src/routes/LoginRoutes")(nav)
+const SignupRouter = require("./src/routes/SignupRoutes")(nav)
+const updateAuthorRouter = require("./src/routes/updateAuthorRoutes")(nav,nav1,nav2,nav3)
+const updateBookRouter = require("./src/routes/updateBookRoutes")(nav,nav1,nav2,nav3)
+const deleteAuthorRouter = require("./src/routes/deleteAuthorRoutes")(nav,nav1,nav2,nav3)
+const deleteBookRouter = require("./src/routes/deleteBookRoutes")(nav,nav1,nav2,nav3)
+
+
+const booksRouter1 = require("./src/routes/bookRoutes1")(nav4)
+const authorRouter1 = require("./src/routes/authorRoutes1")(nav4)
+
 
 
 app.use(express.urlencoded({extended:true}));
-app.use(express.static('./public'));
-app.set('view engine','ejs');
-app.set('views',__dirname+ '/src/views');
-app.use('/books',booksRouter);
-// app.use('/adminhome/addbooks',adminRouter);
-app.use('/authors',authorRouter);
-// app.use('/addauthors',adminRouter);
-app.use('/login',loginRouter);
-app.use('/userhome',userRouter);
-app.use('/signup',signupRouter);
-app.use('/adminhome',adminRouter);
+app.use(express.static("./public"))
+app.set("view engine","ejs");
+app.set("views","./src/views");
+app.use("/books",booksRouter);
+app.use("/authors",authorRouter);
+app.use("/Login",LoginRouter);
+app.use("/Signup",SignupRouter);
+app.use("/updateAuthor",updateAuthorRouter);
+app.use("/updateBook",updateBookRouter);
+app.use("/deleteAuthor",deleteAuthorRouter);
+app.use("/deleteBook",deleteBookRouter);
+
+
+app.use("/books1",booksRouter1);
+app.use("/authors1",authorRouter1);
 
 
 
-app.get('/',function(req,res){
+app.get("/",function(req,res){
     res.render("index",
     {
-        nav1,
-        title:'Library'
+        nav,
+        title:'Digital Library'
     });
 });
 
-app.listen(port,()=>{
-    console.log("server ready at "+port+ " [Admin Details{email: admin@gmail.com , password :Admin@123}]");
+app.get("/home",function(req,res){
+    res.render("home",
+    {
+        nav,
+        title:'Digital Library',
+        nav2
+    });
 });
+
+app.get("/home1",function(req,res){
+    res.render("home1",
+    {
+        nav4,
+        title:'Digital Library',
+        nav2
+    });
+});
+
+app.listen(port,()=>{console.log("Server Ready at "+port)});

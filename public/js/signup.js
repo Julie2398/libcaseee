@@ -1,125 +1,117 @@
-let erroruser= document.getElementById("erroruser");
-let user= document.getElementById("user");
-let errorEmail= document.getElementById("errorEmail");
-let email= document.getElementById("email");
-let password=document.getElementById("password");
-let passerror=document.getElementById("passerror");
-let confirmPassword=document.getElementById("confirmPassword");
-let errpwd=document.getElementById("errpwd");
+$(document).ready(function () {
+    $("form").submit(function () {
+        let name = $("#name").val();
+        let email = $("#email").val();
+        let mobile = $("#mobile").val();
+        let pass1 = $("#pass1").val();
+        let pass2 = $("#pass2").val();
+        
+        let regexp = /^([a-zA-Z0-9\.\-]+)@([A-Za-z0-9\-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/
+        let flag = 0;
+        let flag1 = 0;
+        console.log(check);
 
-function validatename(){
-  let regexp = /^(([A-Z][a-z]+)|([A-Z][A-Z][A-Z]+))$/g;
-  if(user.value==""){
-    erroruser.innerHTML = "Please enter your User Name";
-    erroruser.style.color ="red";
-    erroruser.style.fontWeight ="thin";
-    erroruser.removeAttribute("hidden",'true');
-    user.style.border ="1px solid red";
-    user.style.marginBottom="0";
-    return false;
-  }
-  else if(regexp.test(user.value.trim())){
-    erroruser.setAttribute("hidden",'true');
-    user.style.marginBottom="1.2em";
-    user.style.border ="1px solid";
-    return true;
-  }
-  else{
-    erroruser.innerHTML = "Please Enter Proper Format.";
-    erroruser.style.color ="red";
-    erroruser.style.fontWeight ="thin";
-    erroruser.removeAttribute("hidden",'true');
-    user.style.border ="1px solid red";
-    user.style.marginBottom="0";
-    return false;
-  }
-}
 
-function validate1(){
-    let regexp = /^([A-Za-z0-9\.-]+)@([A-Za-z0-9\-]+)[.]([a-z]{2,3})(\.[a-z]{2,3})?$/g;
-    if(email.value==""){
-      errorEmail.innerHTML = "Please enter your Email Id";
-      errorEmail.style.color ="red";
-      errorEmail.style.fontWeight ="thin";
-      errorEmail.removeAttribute("hidden",'true');
-      email.style.border ="1px solid red";
-      email.style.marginBottom="0";
-      return false;
-    }
-    else if(regexp.test(email.value.trim())){
-      errorEmail.setAttribute("hidden",'true');
-      email.style.marginBottom="1.2em";
-      email.style.border ="1px solid";
-      return true;
-    }
-    else{
-      errorEmail.innerHTML = "Invalid Email Id.Please try again.";
-      errorEmail.style.color ="red";
-      errorEmail.style.fontWeight ="thin";
-      errorEmail.removeAttribute("hidden",'true');
-      email.style.border ="1px solid red";
-      email.style.marginBottom="0";
-      return false;
-    }
-  }
-  
-  
-   function validatepassword(){
-    var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
-    var mediumRegex = new RegExp("^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])(?=.*\\W))|((?=.*[a-z])(?=.*[0-9])(?=.*\\W))|((?=.*[A-Z])(?=.*[a-z])(?=.*\\W))).*$", "g");
-    var enoughRegex = new RegExp("(?=.{5,}).*", "g");
-    if(password.value.length === 0){
-        passerror.innerHTML ="Password is required";
-        passerror.style.color="red"; 
-        password.style.border="1px solid red";
-        return false;  
-    }
-   else if(false === enoughRegex.test(password.value)){
-     passerror.innerHTML="More character";
-     passerror.style.color="blue";
-     password.style.border="1px solid blue";
-     return false;
-   }
-   else if(strongRegex.test(password.value)){
-      passerror.innerHTML="Strong";
-      passerror.style.color="green";
-      password.style.border="1px solid green";
-      return true;
-         
-   }
-   else if(mediumRegex.test(password.value)){
-       passerror.innerHTML="Medium";
-       passerror.style.color="orange";
-       password.style.border="1px solid orange";
-       return false;
-   }
-   else{
-       passerror.innerHTML="Poor";
-       passerror.style.color="red";
-       password.style.border="1px solid red";
-       return false;
-   } 
-  }
-  
-  function confirmpassword(){
-    if(confirmPassword.value===""){
-        errpwd.innerHTML="Confirm your password";
-        errpwd.removeAttribute("hidden",'true');
-        errpwd.style.color="red";
-        confirmPassword.style.border="1px solid red";
-        return false;
-    }
-    else if(password.value===confirmPassword.value){
-        errpwd.innerHTML="Password is";
-        errpwd.setAttribute("hidden",'true');
-        confirmPassword.style.border="1px solid";
-        return true;
-    } 
-    else{
-        errpwd.innerHTML="Those passwords didn't match. Try again";
-        errpwd.style.color="red";
-        confirmPassword.style.border="1px solid red";
-        errpwd.removeAttribute("hidden",'true');
-        return false;
-    }
-  }
+        if (name.search(/[0-9]/) != -1) {
+            document.getElementById("name_msg").innerHTML = "Name should contain only characters";
+            document.getElementById("name_msg").style.color = "red";
+            flag++;
+        }
+        else {
+            document.getElementById("name_msg").innerHTML = "";
+            if (name.length < 3) {
+                document.getElementById("name_msg").innerHTML = "Name should be atleast 3 characters long";
+                document.getElementById("name_msg").style.color = "red";
+                flag++;
+            }
+            else {
+                document.getElementById("name_msg").innerHTML = "";
+            }
+        }
+
+        if (!regexp.test(email)) {
+            document.getElementById("email_msg").innerHTML = "Invalid Email ID";
+            document.getElementById("email_msg").style.color = "red";
+            flag++;
+        }
+        else {
+            document.getElementById("email_msg").innerHTML = "";
+        }
+
+        if (mobile.length != 10) {
+            document.getElementById("mobile_msg").innerHTML = "Mobile Number should contain 10 numbers only";
+            document.getElementById("mobile_msg").style.color = "red";
+            flag++;
+        }
+        else {
+            document.getElementById("mobile_msg").innerHTML = "";
+        }
+
+        if (pass1.length < 8) {
+            document.getElementById("pass1_msg").innerHTML = "Password should be minimum 8 characters long";
+            document.getElementById("pass1_msg").style.color = "red";
+            flag++;
+            flag1++;
+        }
+        else {
+            if (pass1.search(/[a-z]/) == -1) {
+                document.getElementById("pass1_msg").innerHTML = "Password should contain atleast one lowercase letter";
+                document.getElementById("pass1_msg").style.color = "red";
+                flag++;
+                flag1++;
+            }
+
+            if (pass1.search(/[0-9]/) == -1) {
+                document.getElementById("pass1_msg").innerHTML = "Password should contain atleast one number";
+                document.getElementById("pass1_msg").style.color = "red";
+                flag++;
+                flag1++;
+            }
+
+            if (pass1.search(/[A-Z]/) == -1) {
+                document.getElementById("pass1_msg").innerHTML = "Password should contain atleast one Uppercase letter";
+                document.getElementById("pass1_msg").style.color = "red";
+                flag++;
+                flag1++;
+            }
+        }
+
+
+
+
+
+
+        console.log(pass1);
+        console.log(pass2);
+        if ((flag1 == 0) && (pass1 != pass2)) {
+            document.getElementById("pass1_msg").innerHTML = "Password does not match";
+            document.getElementById("pass1_msg").style.color = "red";
+            document.getElementById("pass2_msg").innerHTML = "Password does not match";
+            document.getElementById("pass2_msg").style.color = "red";
+            flag++;
+        }
+
+
+        if ((flag1 == 0) && (pass1 == pass2)) {
+            document.getElementById("pass1_msg").innerHTML = "";
+            document.getElementById("pass2_msg").innerHTML = "";
+        }
+
+        
+        if (!document.getElementById("check").checked) {
+            document.getElementById("check_msg").innerHTML = "Please accept the T&C to signup";
+            document.getElementById("check_msg").style.color = "red";
+            flag++;
+        }
+        else {
+            document.getElementById("check_msg").innerHTML = "";
+        }
+
+
+        if (flag == 0)
+            return true;
+        else
+            return false;
+
+    });
+});

@@ -1,60 +1,56 @@
-const express = require('express');
-const loginRouter = express.Router();
-const Userdata = require('../model/Userdata');
-loginRouter.use(express.static('./public'));
+const express = require("express");
+const LoginRouter = express.Router();
+const Userdata = require("../model/Userdata");
+const signup=[
+    {
+        link:"/Signup",name:"Signup"
+    }
+];
 
-
-function router(nav1){
-    // login
-    loginRouter.get('/',function(req,res){
-        res.render("login",
-            {
-            nav1,
-            title:'Library',
-            msg:''
-            });
+function router(nav){
+   
+    LoginRouter.get("/",function(req,res){
+        res.render("Login",{
+            nav,
+            title:'Digital Library',
+            signup,
+        });
     });
-    // validation
-    loginRouter.post('/valid',async(req,res)=>{
-        
-        try {
-            
-            const email =req.body.email;
-            const password =req.body.password;
+    LoginRouter.get("/loginmsg",function(req,res){
+        res.render("loginmsg",{
+            nav,
+            title:'Digital Library',
+            signup,
+        });
+    });
+    LoginRouter.post("/add",function(req,res){
+        var username = req.body.username;
+        var password = req.body.password;
 
-            const user = await Userdata.findOne({email:email});
-            
-            // ADMIN [email: admin@gmail.com && password: Admin@123]
-            if(email === "admin@gmail.com" && password === "Admin@123"){
-                res.redirect('/adminhome');
-            }else if(user.password === password){
-                res.redirect('/userhome');
-            }else{
-                res.render('login',
-                   {
-                    nav1,
-                    title:'Library',
-                    msg :'Incorrect password !!'
-                   }
-                );
+        Userdata.findOne({email:username,pwd:password},function(err,user){
+            if(user)
+            {
+                res.redirect("/home1"); 
             }
-            
-        } 
-        catch (error){
-            res.render('login',
-               {
-                nav1,
-                title:'Library',
-                msg :'Please Create an Account First !!'
-               }
-            );
-        }                
-    }); 
+            else if((username == "admin@gmail.com") && (password == "admin"))
+            {
+                res.redirect("/home");  
+            }
+            else{
+                if (!user)
+                  {
+                    res.redirect("/login/loginmsg"); 
+                  }
+                else
+                  {
+                      console.log(err);
+                  }  
+                }
+        })
+    })
+    
 
-    return loginRouter;
-
+    return LoginRouter;
 }
 
 module.exports = router;
-
-

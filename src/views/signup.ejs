@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title><%=title%></title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="css/styles.css" rel="stylesheet">
-	</head>
-	<body>
-<header class="navbar navbar-bright navbar-fixed-top" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/" class="navbar-brand">Home</a>
-    </div>
-    <nav class="collapse navbar-collapse" role="navigation">
-      <ul class="nav navbar-nav navbar-right">
-        <%for(i=0;i<nav1.length;i++){%>
-        <li>
-          <a href="<%=nav1[i].link%>"><%=nav1[i].name%></a>
-        </li>
-        <%}%>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title><%=title%></title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="navbar navbar-bright navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">Home</a>
+            </div>
+            <nav class="collapse navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                    <%for(i=0;i<nav.length;i++){%>
+                    <li>
+                        <a href="<%=nav[i].link%>"><%=nav[i].name%></a>
+                    </li>
+                    <%}%>
+      </ul>
+      <!-- <ul class="nav navbar-right navbar-nav">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
           <ul class="dropdown-menu" style="padding:12px;">
@@ -40,7 +42,7 @@
             </form>
           </ul>
         </li>
-      </ul>
+      </ul> -->
     </nav>
   </div>
 </header>
@@ -57,93 +59,88 @@
         <div class="well well-lg"> 
           <div class="row">
             <div class="col-sm-12">
-              
+             
 			
             </div>
           </div>
         </div>
       </div>
     </div> 
-  </div>
-  <!-- /cont -->
+  </div><!-- /cont -->
   
-  <!-- <div class="container">
+  <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="top-spacer"> </div>
       </div>
     </div> 
-  </div> -->
+  </div>
   <!-- /cont -->
   
 </div>
-
 
 <div class="container">
   <div class="row">
     
     <div class="col-md-12"> 
       
-      <!-- <div class="panel">
-        <div class="panel-body"> -->
-          
-          
-          
-          <!--/stories-->
-          <div class="addItem">
-            <div class="col-lg-5 form1 ">
-              <h2 class="display-6 signupheading">Create an account</h2><br>
-              <% if(success != ''){%>
-                <div class="alert alert-success" role="alert" >
-                  <div class="alert-text"><strong style="color: green;"><%=success%><a class="nav-item link-primary" style="color: green;" href="/login">login!</a></strong></div>
-                </div>
-                <% }%>
-              <% if(msg != ''){%>
-                <div class="alert alert-danger" role="alert" >
-                  <div class="alert-text"><strong style="color: red;"><%=msg%></strong></div>
-                </div>
-                <% }%>
-              <p class="h5 signuppara">If you are already a member.Please <a class="nav-item link-primary" style="color: blue;" href="/login">login</a></p>
-            <form action="/signup/add" method="POST" onsubmit='return !! (validate1() & validatename() & validatepassword() & confirmpassword());'>
-              <div class="form-group">
-                <label for="">User Name</label>
-                <input type="text" name="name" class="form-control" id="user" placeholder="Name" title="Must be full Capital letters or First letter must capital letter" >
-                <small id="erroruser" class="form-text"></small>
-              </div>
-              <div class="form-group ">
-                <label for="Email">Email address</label>
-                <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="errorEmail" class="form-text">We'll never share your Email with anyone else.</small>
-              </div>
-              <div class="form-group">
-                <label for="Password">Password</label>
-                <input type="password" class="form-control" onkeyup="return validatepassword();" id="password" placeholder="Password" title="Must contain at least one number and one uppercase and lowercase letter and special chara and atleast 8 character">
-                <small  class="form-text" id="passerror" style="color: red;"> (Must contain at least one number one uppercase , lowercase and special chara and atleast 8 or more character) </small>
-              </div>
-              <div class="form-group mb-3">
-                  <label for="ConfirmPassword1">Confirm Password</label>
-                  <input type="password" class="form-control" name="password" onchange="return confirmpassword()" id="confirmPassword" placeholder="Password" >
-                  <small  class="form-text" id="errpwd"></small>
-                </div>
-               
-                <div class="d-flex justify-content-center sin ">
-                  <button type="submit" class="btn btn-primary w-100 mb-3" id="sin">Sign Up</button>
-                </div>
-            </form>
-          </div>
-          </div>
-
-          <!--/stories-->
-        
-          
+      <div class="panel">
+        <div class="panel-body">
+          <div class="sample">
+<div class="row">    
+  <br>
+  <div class="center">
+    <h2><center><b>WORLD OF READERS</b></center></h2>
+    <form action="/signup/add" method="POST">
+        <div class="txt_field">
+            <input type="text" id="name" name="name" required>
+            <!-- <span></span> -->
+            <label>Name</label>
+            <div id="name_msg"></div>
         </div>
-      </div>
-                                                                                       
-	                                                
-                                                      
-   	</div><!--/col-12-->
-  </div>
+        <div class="txt_field">
+            <input type="email" id="email" name="email" required>
+            <!-- <span></span> -->
+            <label>Email ID</label>
+            <div id="email_msg"></div>
+        </div>
+        <div class="txt_field">
+            <input type="text" id="country" name="country" required>
+            <!-- <span></span> -->
+            <label>Country</label>
+            <div id="mobile_msg"></div>
+        </div>
+        <div class="txt_field">
+            <input type="password" id="pass1" name="pwd" required>
+            <!-- <span></span> -->
+            <label>Enter Password</label>
+            <div id="pass1_msg"></div>
+        </div>
+        <div class="txt_field">
+            <input type="password" id="pass2" name="Repwd" required>
+            <!-- <span></span> -->
+            <label>Re-enter Password</label>
+            <div id="pass2_msg"></div>
+        </div>
+        <div class="pass" id="pass"><input type="checkbox" class="pass" id="check"> I agree to the terms and conditions</div>
+        <div id="check_msg"></div>
+        <br>
+        <input type="submit" value="Signup">
+        <br>
+        <br>
+        <br>
+        
+    </form>
+</div> 
 </div>
+</div>
+<hr>
+                                                    
+</div><!--/col-12-->
+</div>
+</div>
+
+
                                                 
                                                                                 
 <hr>
@@ -186,11 +183,8 @@
   </div>
 </footer>
 	<!-- script references -->
-    <script src="js/signup.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/signup.js"></script>
 	</body>
 </html>
-
-
-<!-- sfag -->

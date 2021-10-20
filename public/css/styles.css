@@ -1,4 +1,4 @@
-/* override bootstrap styles */
+
 @import url('http://fonts.googleapis.com/css?family=Oswald:300,400:latin,latin-ext');
 
 .navbar-form input, .form-inline input {
@@ -8,11 +8,15 @@
 body {
   padding-top:50px;
   color:#646464;
-  background-color:#efefef;
+  background-color:#f5df80;
 }
 
 h1,h2,h3,.highlight,.navbar a,#masthead h4 {
   font-family:'Oswald',arial narrow,sans-serif;
+  color: black;
+}
+h4{
+  color: black;
 }
 
 footer {
@@ -20,30 +24,31 @@ footer {
   margin-top:40px;
   padding-top:40px;
   padding-bottom:40px;
-  background-color:#cecece;
+  background-color:#f5df80;
  
 }
 
 
 #masthead {
   min-height:199px;
-  background-color:#000044;
+  background-color:rgb(233, 29, 80);
   color:#aaaacc;
 }
 
 #masthead h1 {
   font-size: 55px;
   line-height: 1;
-  color:#fefeff;
+  color:white;
   margin-top:50px;
 }
 
 #masthead .well {
   margin-top:31px;
-  background-color:#111166;
-  border-color:#000022;
-  color:#efefff;
+  background-color:rgb(233, 29, 80);
+  border-color:rgb(233, 29, 80);
+  color:#ffefef;
   min-height:127px;
+  padding-bottom: 15px;
 }
 
 #topPanel {
@@ -61,18 +66,13 @@ footer {
   width:100%;
 }
 
-.top-spacer {
-  background-color:#ffffff;
-  height:40px;
-}
-
 a,a:hover {
   color:#223344;
   text-decoration:none;
 }
 
 .icon-bar {
-  background-color:#fff;
+  background-color:#f5df80;
 }
 
 @media screen and (min-width: 768px) {
@@ -82,21 +82,21 @@ a,a:hover {
 }
 
 .navbar-bright {
-  background-color:#111166;
-  color:#fff;
+  background-color:rgb(233, 29, 80);
+  color:#f5df80;
   margin-bottom: 0;
   border-width: 0;
 }
 
 .navbar-bright a, .navbar-bright .navbar-brand, #masthead h4 {
-  color:#ccccdd;
+  color:white;
   font-size:14px;
   text-transform: uppercase;
   letter-spacing:.08em;
 }
 
 .navbar-bright li > a:hover {
-  background-color:#000044;
+  background-color:rgb(233, 29, 80);
 }
 
 .dropdown-menu {
@@ -104,7 +104,7 @@ a,a:hover {
 }
 
 .caret {
-  color:#fff;
+  color:#f5df80;
 }
 
 .navbar-toggle {
@@ -117,8 +117,12 @@ a,a:hover {
 }
 
 .panel {
-  border-color:transparent;
+  margin-top: -28px;
+  box-shadow: 5px 10px 18px #00000079;
+  border-color:#f5df80;
   border-radius:0;
+  background-color: #f5df80;
+  
 }
 
 .thumbnail {
@@ -155,7 +159,7 @@ a,a:hover {
   width:100%;
   opacity:.9;
   padding:6px;
-  color:#fff;
+  color:#f5df80;
 }
     
 .btn-twitter {background-color:#4099FF;color:#fff;}
@@ -166,45 +170,164 @@ a,a:hover {
 .btn-facebook:hover {background-color:#2A4998;color:#4C6BBA;}
 .btn-google-plus:hover {background-color:#C23836;color:#E45A58;}
 
-.addItem{
-  display:flex ;
-  justify-content :center;
-  margin-top: 6%;
+.sample{
+  background: #f5df80;
+}
+
+
+.panel-body{
+  background-color:white;
+}
+
+.center{
   
- }
- .add{
-  border:1px solid #111166;
-  padding-inline: 2em;
-  padding-top: 1.5em;
-  padding-bottom: 1.6em;
-  box-shadow: 10px 10px #111166;
-  background-color: #11116611;
-  margin-bottom: 6%;
- }
- #button{
-   width: 100%;
- }
- 
- .form1{
-  /* border:2px solid #111166; */
-  padding-inline: 1.8em;
-  padding-top: .6em;
-  padding-bottom: 1.6em;
-  background-color: #fff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 5%;
- }
- .sin{
+    float: center;
+    border:5px solid white ;
+    background-color: #f5df80;
+    color: black;
+    height:37em;
+    margin-top: 5%;
+    margin-bottom: 70%;
+    margin-right: 20%;
+    margin-left: 20%;
+    padding: 30px;
+  
+}
+
+.center h1{
   text-align: center;
- }
- #sin{
-   width: 85%;
- }
-#heading1{
-  display:flex ;
-  justify-content :center;
+  padding: 0 0 20px 0;
 }
-#buttonn{
-  margin-left: 2px;
-  margin-bottom: 5px;
+
+.center form{
+  padding: 0 40px;
+  box-sizing: border-box;
 }
+
+form .txt_field{
+  position: relative;
+  border-bottom: 2px solid black;
+  margin: 30px 0;
+  color: black;
+}
+
+.txt_field input{
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background: #f5df80;
+  color: black;
+}
+
+.txt_field label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: black;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.txt_field span::before{
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #2691d9;
+  transition: .5s;
+
+}
+
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label{
+  top: -5px;
+  color: #2691d9;
+}
+
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before{
+  width: 100%;
+}
+
+.pass{
+  margin: -5px 0 20px 5px;
+  color: #a6a6a6;
+  cursor: pointer;
+}
+
+.pass:hover{
+  text-decoration: underline;
+  color: #000044;
+}
+
+input[type="submit"]{
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background: black;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+
+input[type="submit"]:hover{
+  border-color: #000044;
+  transition: .5s;
+}
+
+.signup_link{
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: #666666;
+}
+
+.signup_link a{
+  color: #2691d9;
+  text-decoration: none;
+}
+
+.signup_link a:hover{
+  text-decoration: none;
+  color: #000044;
+}
+
+#warning_msg{
+  text-align: center;
+  font-size: 20px;
+  text-decoration: none;
+  color: #000022;
+  font-weight: bold;
+}
+
+
+
+/* Signup*/
+
+#pass:hover{
+  text-decoration: none !important;
+}
+
+/* /Signup */
+
+/* Add Image */
+
+#book_img{
+  position: absolute;
+  color: black;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: .5s;
+}
+/* /Add Image */
